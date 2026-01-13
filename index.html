@@ -1,0 +1,2446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Florin Del | Nature's Luxury Skincare</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.min.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo">
+                <div class="logo-circle">
+                    <span>FD</span>
+                </div>
+                <span class="logo-text">Florin Del</span>
+            </a>
+            
+            <div class="nav-links">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#products" class="nav-link">Products</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            
+            <div class="nav-actions">
+                <div class="search-container">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" class="search-input" placeholder="Search products...">
+                </div>
+                <div class="cart-icon">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count">0</span>
+                </div>
+                <div class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu">
+            <a href="#home" class="mobile-nav-link active">Home</a>
+            <a href="#about" class="mobile-nav-link">About</a>
+            <a href="#products" class="mobile-nav-link">Products</a>
+            <a href="#contact" class="mobile-nav-link">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="hero-line">Nature's Luxury</span>
+                    <span class="hero-line">For Your Skin</span>
+                </h1>
+                <p class="hero-subtitle">Pure botanical extracts meet scientific innovation in our premium skincare collection</p>
+                <a href="#products" class="hero-btn">
+                    <span>Explore Collection</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            
+            <div class="hero-3d">
+                <div id="hero-3d-container"></div>
+                <div class="floating-element" id="float-1"></div>
+                <div class="floating-element" id="float-2"></div>
+                <div class="floating-element" id="float-3"></div>
+            </div>
+            
+            <div class="scroll-indicator">
+                <div class="scroll-line"></div>
+                <span>Discover More</span>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about">
+            <div class="section-header">
+                <h2 class="section-title">Our Philosophy</h2>
+                <p class="section-subtitle">Where botanical purity meets modern science</p>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Florin Del was born from a simple belief: skincare should be both effective and joyful.</h3>
+                    <p>We combine carefully selected botanical ingredients with cutting-edge skincare technology to create products that truly transform your skin.</p>
+                    <p>Every formulation is created in small batches to ensure freshness and potency, with sustainability at the core of our process.</p>
+                    
+                    <div class="about-stats">
+                        <div class="stat">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Natural Ingredients</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">10</div>
+                            <div class="stat-label">Premium Products</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">0</div>
+                            <div class="stat-label">Harmful Chemicals</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-image">
+                    <div class="image-frame">
+                        <div class="image-placeholder" id="about-3d-container"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section id="products" class="products">
+            <div class="section-header">
+                <h2 class="section-title">Our Collection</h2>
+                <p class="section-subtitle">10 premium skincare essentials</p>
+            </div>
+            
+            <!-- Product Filters -->
+            <div class="product-filters">
+                <div class="filter-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="product-search" placeholder="Search products by name or ingredient...">
+                </div>
+                
+                <div class="filter-sort">
+                    <select id="sort-products">
+                        <option value="default">Sort By</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="name">Name: A to Z</option>
+                        <option value="newest">Newest First</option>
+                    </select>
+                </div>
+                
+                <div class="filter-price">
+                    <span>Price Range:</span>
+                    <input type="range" id="price-slider" min="10" max="150" value="150">
+                    <span id="price-value">Up to $150</span>
+                </div>
+            </div>
+            
+            <!-- Product Grid -->
+            <div class="product-grid" id="product-grid">
+                <!-- Products will be dynamically inserted here -->
+            </div>
+        </section>
+
+        <!-- Product Detail Modal -->
+        <div class="modal-overlay" id="product-modal">
+            <div class="product-detail-modal">
+                <button class="close-modal"><i class="fas fa-times"></i></button>
+                
+                <div class="modal-content">
+                    <div class="modal-images">
+                        <div class="main-image">
+                            <div id="modal-3d-container"></div>
+                            <img id="modal-product-image" src="" alt="Product">
+                        </div>
+                    </div>
+                    
+                    <div class="modal-details">
+                        <h2 id="modal-product-name">Product Name</h2>
+                        <div class="product-category" id="modal-category">Category</div>
+                        <div class="product-price" id="modal-price">$00.00</div>
+                        
+                        <div class="product-description" id="modal-description">
+                            Product description will appear here.
+                        </div>
+                        
+                        <div class="product-ingredients">
+                            <h3>Key Ingredients</h3>
+                            <ul id="modal-ingredients">
+                                <li>Ingredient 1</li>
+                                <li>Ingredient 2</li>
+                                <li>Ingredient 3</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="payment-methods">
+                            <h3>How to Purchase</h3>
+                            <div class="payment-instructions">
+                                <p>1. Send payment via one of these methods:</p>
+                                <div class="payment-details">
+                                    <div class="payment-method">
+                                        <i class="fas fa-mobile-alt"></i>
+                                        <div>
+                                            <strong>Bkash</strong>
+                                            <p>016 ** ** ** **</p>
+                                        </div>
+                                    </div>
+                                    <div class="payment-method">
+                                        <i class="fas fa-wallet"></i>
+                                        <div>
+                                            <strong>Nagad</strong>
+                                            <p>017 ** ** ** **</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p>2. After payment, take a screenshot of your transaction ID</p>
+                                <p>3. Send the screenshot via Instagram DM to <strong>@florindel.skincare</strong></p>
+                                <p>4. We'll confirm and ship your order within 24 hours!</p>
+                            </div>
+                        </div>
+                        
+                        <button class="add-to-cart-btn">
+                            <i class="fas fa-shopping-bag"></i>
+                            <span>Add to Cart</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+            <div class="section-header">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="section-subtitle">We'd love to hear from you</p>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Connect With Us</h3>
+                    <p>Have questions about our products or need skincare advice? Reach out through any of these channels.</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <p>hello@florindel.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h4>Phone</h4>
+                                <p>+880 1234 567890</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Location</h4>
+                                <p>Dhaka, Bangladesh</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h3>Send a Message</h3>
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <input type="text" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Your Message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">
+                            <span>Send Message</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo">
+                    <div class="logo-circle">
+                        <span>FD</span>
+                    </div>
+                    <span class="logo-text">Florin Del</span>
+                </div>
+                <p>Premium botanical skincare that celebrates your natural beauty.</p>
+            </div>
+            
+            <div class="footer-links">
+                <div class="link-group">
+                    <h4>Explore</h4>
+                    <a href="#home">Home</a>
+                    <a href="#about">About Us</a>
+                    <a href="#products">Products</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                
+                <div class="link-group">
+                    <h4>Support</h4>
+                    <a href="#">Shipping Info</a>
+                    <a href="#">Returns & Exchanges</a>
+                    <a href="#">FAQ</a>
+                    <a href="#">Privacy Policy</a>
+                </div>
+                
+                <div class="link-group">
+                    <h4>Connect</h4>
+                    <a href="#">Instagram</a>
+                    <a href="#">Facebook</a>
+                    <a href="#">TikTok</a>
+                    <a href="#">YouTube</a>
+                </div>
+            </div>
+            
+            <div class="footer-newsletter">
+                <h4>Join Our Community</h4>
+                <p>Get skincare tips and exclusive offers</p>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="Your email address">
+                    <button type="submit">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2023 Florin Del. All rights reserved. Crafted with <i class="fas fa-heart"></i> <a href="https://sayankhandev.vercel.app/" >by sayankhandev.vercel.app</a></p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <style>
+    /* CSS Variables for Theme */
+    :root {
+        --color-primary: #2E7D32; /* Deep green */
+        --color-primary-light: #4CAF50; /* Lighter green */
+        --color-secondary: #FFF8E1; /* Yellowish white */
+        --color-accent: #FFD54F; /* Golden yellow */
+        --color-dark: #1B5E20; /* Dark green */
+        --color-light: #F1F8E9; /* Light greenish white */
+        --color-text: #2E3A30; /* Dark greenish text */
+        --color-text-light: #5A665C; /* Lighter text */
+        --color-border: #E0E0E0; /* Light border */
+        --font-heading: 'Cormorant Garamond', serif;
+        --font-body: 'Montserrat', sans-serif;
+        --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        --shadow: 0 10px 30px rgba(46, 125, 50, 0.1);
+        --shadow-hover: 0 20px 40px rgba(46, 125, 50, 0.15);
+        --radius: 12px;
+        --container-width: 1200px;
+    }
+
+    /* Reset & Base Styles */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family: var(--font-body);
+        color: var(--color-text);
+        background-color: var(--color-secondary);
+        line-height: 1.6;
+        overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-family: var(--font-heading);
+        font-weight: 600;
+        line-height: 1.2;
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+        transition: var(--transition);
+    }
+
+    button, input, textarea, select {
+        font-family: inherit;
+        border: none;
+        outline: none;
+        transition: var(--transition);
+    }
+
+    .container {
+        max-width: var(--container-width);
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .section-header {
+        text-align: center;
+        margin-bottom: 60px;
+    }
+
+    .section-title {
+        font-size: 3.5rem;
+        color: var(--color-dark);
+        margin-bottom: 15px;
+        position: relative;
+        display: inline-block;
+    }
+
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background: var(--color-accent);
+    }
+
+    .section-subtitle {
+        font-size: 1.2rem;
+        color: var(--color-text-light);
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    /* Navigation */
+    .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        background-color: rgba(255, 248, 225, 0.95);
+        backdrop-filter: blur(10px);
+        padding: 20px 0;
+        box-shadow: 0 5px 20px rgba(46, 125, 50, 0.05);
+    }
+
+    .nav-container {
+        max-width: var(--container-width);
+        margin: 0 auto;
+        padding: 0 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 700;
+        font-size: 1.5rem;
+        color: var(--color-dark);
+    }
+
+    .logo-circle {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--color-primary), var(--color-dark));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 700;
+        font-size: 1.2rem;
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 40px;
+    }
+
+    .nav-link {
+        position: relative;
+        font-weight: 500;
+        font-size: 1.1rem;
+        color: var(--color-text);
+        padding: 5px 0;
+    }
+
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--color-primary);
+        transition: var(--transition);
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+        width: 100%;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+        color: var(--color-primary);
+    }
+
+    .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 25px;
+    }
+
+    .search-container {
+        position: relative;
+    }
+
+    .search-icon {
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--color-text-light);
+        z-index: 1;
+    }
+
+    .search-input {
+        width: 0;
+        padding: 10px 15px 10px 40px;
+        border-radius: 30px;
+        background-color: white;
+        border: 1px solid var(--color-border);
+        font-size: 0.9rem;
+        transition: var(--transition);
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .search-container:hover .search-input {
+        width: 200px;
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .cart-icon {
+        position: relative;
+        font-size: 1.3rem;
+        color: var(--color-dark);
+        cursor: pointer;
+    }
+
+    .cart-count {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        background-color: var(--color-primary);
+        color: white;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        font-size: 0.7rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+    }
+
+    .mobile-menu-btn {
+        display: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--color-dark);
+    }
+
+    .mobile-menu {
+        display: none;
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px;
+        background-color: white;
+        border-top: 1px solid var(--color-border);
+    }
+
+    .mobile-nav-link {
+        padding: 10px 0;
+        font-weight: 500;
+        border-bottom: 1px solid var(--color-border);
+    }
+
+    .mobile-nav-link.active {
+        color: var(--color-primary);
+    }
+
+    /* Hero Section */
+    .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding: 100px 20px 60px;
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(135deg, var(--color-secondary) 0%, #E8F5E9 100%);
+    }
+
+    .hero-content {
+        flex: 1;
+        max-width: 600px;
+        z-index: 2;
+    }
+
+    .hero-title {
+        font-size: 4.5rem;
+        color: var(--color-dark);
+        margin-bottom: 20px;
+    }
+
+    .hero-line {
+        display: block;
+    }
+
+    .hero-subtitle {
+        font-size: 1.3rem;
+        color: var(--color-text-light);
+        margin-bottom: 40px;
+        line-height: 1.7;
+    }
+
+    .hero-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 15px;
+        background: linear-gradient(135deg, var(--color-primary), var(--color-dark));
+        color: white;
+        padding: 18px 35px;
+        border-radius: var(--radius);
+        font-weight: 600;
+        font-size: 1.1rem;
+        cursor: pointer;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+    }
+
+    .hero-btn:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-hover);
+        gap: 20px;
+    }
+
+    .hero-3d {
+        flex: 1;
+        position: relative;
+        height: 600px;
+    }
+
+    #hero-3d-container {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        z-index: 1;
+    }
+
+    .floating-element {
+        position: absolute;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(76, 175, 80, 0.1) 0%, transparent 70%);
+        animation: float 6s ease-in-out infinite;
+    }
+
+    #float-1 {
+        width: 200px;
+        height: 200px;
+        top: 10%;
+        right: 15%;
+        animation-delay: 0s;
+    }
+
+    #float-2 {
+        width: 150px;
+        height: 150px;
+        bottom: 20%;
+        right: 5%;
+        animation-delay: 2s;
+    }
+
+    #float-3 {
+        width: 100px;
+        height: 100px;
+        top: 40%;
+        right: 25%;
+        animation-delay: 4s;
+    }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0) rotate(0deg); }
+        50% { transform: translateY(-20px) rotate(5deg); }
+    }
+
+    .scroll-indicator {
+        position: absolute;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: var(--color-primary);
+        font-weight: 500;
+    }
+
+    .scroll-line {
+        width: 1px;
+        height: 60px;
+        background: linear-gradient(to bottom, var(--color-primary), transparent);
+        margin-bottom: 10px;
+    }
+
+    /* About Section */
+    .about {
+        padding: 100px 20px;
+        background-color: white;
+    }
+
+    .about-content {
+        max-width: var(--container-width);
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: center;
+    }
+
+    .about-text h3 {
+        font-size: 2.2rem;
+        color: var(--color-dark);
+        margin-bottom: 25px;
+        line-height: 1.3;
+    }
+
+    .about-text p {
+        color: var(--color-text-light);
+        margin-bottom: 20px;
+        font-size: 1.1rem;
+        line-height: 1.7;
+    }
+
+    .about-stats {
+        display: flex;
+        gap: 40px;
+        margin-top: 40px;
+    }
+
+    .stat {
+        text-align: center;
+    }
+
+    .stat-number {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--color-primary);
+        margin-bottom: 5px;
+    }
+
+    .stat-label {
+        font-size: 0.9rem;
+        color: var(--color-text-light);
+        font-weight: 500;
+    }
+
+    .about-image {
+        position: relative;
+    }
+
+    .image-frame {
+        width: 100%;
+        height: 500px;
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        position: relative;
+    }
+
+    .image-placeholder {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, var(--color-light), white);
+    }
+
+    #about-3d-container {
+        width: 100%;
+        height: 100%;
+    }
+
+    /* Products Section */
+    .products {
+        padding: 100px 20px;
+        background-color: var(--color-light);
+    }
+
+    .product-filters {
+        max-width: var(--container-width);
+        margin: 0 auto 50px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        align-items: center;
+        justify-content: center;
+        background-color: white;
+        padding: 25px;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+    }
+
+    .filter-search {
+        flex: 1;
+        min-width: 300px;
+        position: relative;
+    }
+
+    .filter-search i {
+        position: absolute;
+        left: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--color-text-light);
+    }
+
+    #product-search {
+        width: 100%;
+        padding: 15px 20px 15px 50px;
+        border-radius: var(--radius);
+        background-color: var(--color-light);
+        border: 1px solid var(--color-border);
+        font-size: 1rem;
+    }
+
+    .filter-sort select {
+        padding: 15px 20px;
+        border-radius: var(--radius);
+        background-color: var(--color-light);
+        border: 1px solid var(--color-border);
+        font-size: 1rem;
+        color: var(--color-text);
+        cursor: pointer;
+        min-width: 200px;
+    }
+
+    .filter-price {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    #price-slider {
+        width: 150px;
+        height: 5px;
+        background: var(--color-light);
+        border-radius: 5px;
+        outline: none;
+        -webkit-appearance: none;
+    }
+
+    #price-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: var(--color-primary);
+        cursor: pointer;
+    }
+
+    #price-value {
+        font-weight: 600;
+        color: var(--color-primary);
+        min-width: 100px;
+    }
+
+    .product-grid {
+        max-width: var(--container-width);
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 30px;
+    }
+
+    .product-card {
+        background-color: white;
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+        position: relative;
+        cursor: pointer;
+    }
+
+    .product-card:hover {
+        transform: translateY(-10px);
+        box-shadow: var(--shadow-hover);
+    }
+
+    .product-image {
+        height: 250px;
+        background: linear-gradient(135deg, var(--color-light), white);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .product-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: var(--transition);
+    }
+
+    .product-card:hover .product-img {
+        transform: scale(1.05);
+    }
+
+    .product-badge {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        background-color: var(--color-accent);
+        color: var(--color-dark);
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+
+    .product-info {
+        padding: 25px;
+    }
+
+    .product-name {
+        font-size: 1.4rem;
+        color: var(--color-dark);
+        margin-bottom: 10px;
+        font-weight: 600;
+    }
+
+    .product-category {
+        font-size: 0.9rem;
+        color: var(--color-primary);
+        margin-bottom: 15px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .product-price {
+        font-size: 1.8rem;
+        color: var(--color-dark);
+        font-weight: 700;
+        margin-bottom: 15px;
+    }
+
+    .product-description {
+        font-size: 0.95rem;
+        color: var(--color-text-light);
+        margin-bottom: 20px;
+        line-height: 1.6;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .product-payment {
+        padding: 15px;
+        background-color: var(--color-light);
+        border-radius: 0 0 var(--radius) var(--radius);
+        border-top: 1px solid var(--color-border);
+    }
+
+    .payment-title {
+        font-size: 0.9rem;
+        color: var(--color-text-light);
+        margin-bottom: 10px;
+        font-weight: 500;
+    }
+
+    .payment-methods {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .payment-method {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 0.9rem;
+    }
+
+    .payment-method i {
+        color: var(--color-primary);
+        font-size: 1.1rem;
+    }
+
+    .view-details-btn {
+        width: 100%;
+        padding: 15px;
+        background-color: var(--color-primary);
+        color: white;
+        border-radius: var(--radius);
+        font-weight: 600;
+        cursor: pointer;
+        margin-top: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        transition: var(--transition);
+    }
+
+    .view-details-btn:hover {
+        background-color: var(--color-dark);
+    }
+
+    /* Product Detail Modal */
+    .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        z-index: 2000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        opacity: 0;
+        visibility: hidden;
+        transition: var(--transition);
+    }
+
+    .modal-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .product-detail-modal {
+        background-color: white;
+        width: 100%;
+        max-width: 1200px;
+        max-height: 90vh;
+        border-radius: var(--radius);
+        overflow: hidden;
+        position: relative;
+        transform: translateY(50px);
+        transition: transform 0.4s ease;
+    }
+
+    .modal-overlay.active .product-detail-modal {
+        transform: translateY(0);
+    }
+
+    .close-modal {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 10;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: var(--transition);
+    }
+
+    .close-modal:hover {
+        background-color: var(--color-light);
+        transform: rotate(90deg);
+    }
+
+    .modal-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+
+    .modal-images {
+        padding: 40px;
+        background-color: var(--color-light);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .main-image {
+        width: 100%;
+        height: 400px;
+        border-radius: var(--radius);
+        overflow: hidden;
+        position: relative;
+        box-shadow: var(--shadow);
+    }
+
+    #modal-3d-container {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, var(--color-light), white);
+    }
+
+    #modal-product-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: none;
+    }
+
+    .modal-details {
+        padding: 40px;
+        overflow-y: auto;
+    }
+
+    #modal-product-name {
+        font-size: 2.5rem;
+        color: var(--color-dark);
+        margin-bottom: 10px;
+    }
+
+    #modal-category {
+        color: var(--color-primary);
+        font-weight: 500;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    #modal-price {
+        font-size: 2.2rem;
+        color: var(--color-dark);
+        font-weight: 700;
+        margin-bottom: 30px;
+    }
+
+    .product-description {
+        font-size: 1.1rem;
+        line-height: 1.7;
+        color: var(--color-text);
+        margin-bottom: 30px;
+    }
+
+    .product-ingredients h3 {
+        font-size: 1.3rem;
+        color: var(--color-dark);
+        margin-bottom: 15px;
+    }
+
+    .product-ingredients ul {
+        list-style: none;
+        margin-bottom: 30px;
+    }
+
+    .product-ingredients li {
+        padding: 8px 0;
+        color: var(--color-text-light);
+        position: relative;
+        padding-left: 25px;
+    }
+
+    .product-ingredients li::before {
+        content: '✓';
+        position: absolute;
+        left: 0;
+        color: var(--color-primary);
+        font-weight: bold;
+    }
+
+    .payment-methods h3 {
+        font-size: 1.3rem;
+        color: var(--color-dark);
+        margin-bottom: 20px;
+    }
+
+    .payment-instructions {
+        background-color: var(--color-light);
+        padding: 25px;
+        border-radius: var(--radius);
+        margin-bottom: 30px;
+    }
+
+    .payment-instructions p {
+        margin-bottom: 15px;
+        color: var(--color-text);
+        line-height: 1.6;
+    }
+
+    .payment-details {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin: 20px 0;
+    }
+
+    .payment-method {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 15px;
+        background-color: white;
+        border-radius: var(--radius);
+        border: 1px solid var(--color-border);
+    }
+
+    .payment-method i {
+        font-size: 1.5rem;
+        color: var(--color-primary);
+    }
+
+    .payment-method strong {
+        display: block;
+        color: var(--color-dark);
+        margin-bottom: 5px;
+    }
+
+    .payment-method p {
+        margin: 0;
+        color: var(--color-text-light);
+        font-size: 0.9rem;
+    }
+
+    .add-to-cart-btn {
+        width: 100%;
+        padding: 20px;
+        background: linear-gradient(135deg, var(--color-primary), var(--color-dark));
+        color: white;
+        border-radius: var(--radius);
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        transition: var(--transition);
+    }
+
+    .add-to-cart-btn:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-hover);
+    }
+
+    /* Contact Section */
+    .contact {
+        padding: 100px 20px;
+        background-color: white;
+    }
+
+    .contact-content {
+        max-width: var(--container-width);
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+    }
+
+    .contact-info h3 {
+        font-size: 2.2rem;
+        color: var(--color-dark);
+        margin-bottom: 25px;
+    }
+
+    .contact-info p {
+        color: var(--color-text-light);
+        margin-bottom: 40px;
+        line-height: 1.7;
+        font-size: 1.1rem;
+    }
+
+    .contact-details {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        margin-bottom: 40px;
+    }
+
+    .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .contact-item i {
+        width: 50px;
+        height: 50px;
+        background-color: var(--color-light);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--color-primary);
+        font-size: 1.2rem;
+    }
+
+    .contact-item h4 {
+        font-size: 1.1rem;
+        color: var(--color-dark);
+        margin-bottom: 5px;
+    }
+
+    .social-links {
+        display: flex;
+        gap: 15px;
+    }
+
+    .social-link {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: var(--color-light);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--color-primary);
+        font-size: 1.2rem;
+        transition: var(--transition);
+    }
+
+    .social-link:hover {
+        background-color: var(--color-primary);
+        color: white;
+        transform: translateY(-5px);
+    }
+
+    .contact-form h3 {
+        font-size: 2.2rem;
+        color: var(--color-dark);
+        margin-bottom: 25px;
+    }
+
+    .form-group {
+        margin-bottom: 25px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 18px 25px;
+        border-radius: var(--radius);
+        background-color: var(--color-light);
+        border: 1px solid var(--color-border);
+        font-size: 1rem;
+        color: var(--color-text);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+        border-color: var(--color-primary);
+        box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.1);
+    }
+
+    .submit-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 15px;
+        background: linear-gradient(135deg, var(--color-primary), var(--color-dark));
+        color: white;
+        padding: 18px 35px;
+        border-radius: var(--radius);
+        font-weight: 600;
+        font-size: 1.1rem;
+        cursor: pointer;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+    }
+
+    .submit-btn:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-hover);
+        gap: 20px;
+    }
+
+    /* Footer */
+    .footer {
+        background-color: var(--color-dark);
+        color: white;
+        padding: 60px 20px 30px;
+    }
+
+    .footer-content {
+        max-width: var(--container-width);
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+        gap: 60px;
+        margin-bottom: 50px;
+    }
+
+    .footer-brand {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .footer-brand .logo {
+        margin-bottom: 20px;
+        color: white;
+    }
+
+    .footer-brand p {
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 1.7;
+    }
+
+    .footer-links {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+    }
+
+    .link-group h4 {
+        font-size: 1.2rem;
+        margin-bottom: 25px;
+        color: white;
+    }
+
+    .link-group a {
+        display: block;
+        margin-bottom: 15px;
+        color: rgba(255, 255, 255, 0.7);
+        transition: var(--transition);
+    }
+
+    .link-group a:hover {
+        color: var(--color-accent);
+        transform: translateX(5px);
+    }
+
+    .footer-newsletter h4 {
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+        color: white;
+    }
+
+    .footer-newsletter p {
+        color: rgba(255, 255, 255, 0.7);
+        margin-bottom: 25px;
+        line-height: 1.7;
+    }
+
+    .newsletter-form {
+        display: flex;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: var(--radius);
+        overflow: hidden;
+    }
+
+    .newsletter-form input {
+        flex: 1;
+        padding: 15px 20px;
+        background: transparent;
+        color: white;
+        font-size: 1rem;
+    }
+
+    .newsletter-form input::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    .newsletter-form button {
+        padding: 0 25px;
+        background-color: var(--color-primary);
+        color: white;
+        cursor: pointer;
+        font-size: 1.2rem;
+        transition: var(--transition);
+    }
+
+    .newsletter-form button:hover {
+        background-color: var(--color-accent);
+        color: var(--color-dark);
+    }
+
+    .footer-bottom {
+        text-align: center;
+        padding-top: 30px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 0.9rem;
+    }
+
+    .footer-bottom i {
+        color: var(--color-accent);
+        margin: 0 5px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+        .hero-title {
+            font-size: 3.5rem;
+        }
+        
+        .section-title {
+            font-size: 2.8rem;
+        }
+        
+        .contact-content,
+        .about-content {
+            grid-template-columns: 1fr;
+            gap: 50px;
+        }
+        
+        .footer-content {
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+        
+        .modal-content {
+            grid-template-columns: 1fr;
+            max-height: 95vh;
+        }
+        
+        .modal-images {
+            height: 300px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .nav-links {
+            display: none;
+        }
+        
+        .mobile-menu-btn {
+            display: block;
+        }
+        
+        .hero {
+            flex-direction: column;
+            text-align: center;
+            padding-top: 150px;
+        }
+        
+        .hero-content {
+            margin-bottom: 60px;
+        }
+        
+        .hero-3d {
+            width: 100%;
+            height: 400px;
+        }
+        
+        .hero-title {
+            font-size: 2.8rem;
+        }
+        
+        .section-title {
+            font-size: 2.3rem;
+        }
+        
+        .about-stats {
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        .product-filters {
+            flex-direction: column;
+            align-items: stretch;
+        }
+        
+        .filter-search {
+            min-width: auto;
+        }
+        
+        .payment-details {
+            grid-template-columns: 1fr;
+        }
+        
+        .footer-links {
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .hero-title {
+            font-size: 2.2rem;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+        }
+        
+        .product-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .modal-details {
+            padding: 25px;
+        }
+        
+        #modal-product-name {
+            font-size: 1.8rem;
+        }
+    }
+</style>
+<script>
+    // Product Data
+    const products = [
+        {
+            id: 1,
+            name: "Botanical Hydration Serum",
+            category: "Serum",
+            price: 42,
+            description: "A lightweight, fast-absorbing serum packed with hyaluronic acid and botanical extracts to deeply hydrate and plump the skin. Perfect for all skin types, especially dehydrated or mature skin.",
+            ingredients: ["Hyaluronic Acid", "Aloe Vera", "Green Tea Extract", "Vitamin B5", "Niacinamide"],
+            imageColor: "#4CAF50"
+        },
+        {
+            id: 2,
+            name: "Golden Glow Face Oil",
+            category: "Face Oil",
+            price: 58,
+            description: "A luxurious blend of nourishing oils that delivers a radiant, healthy glow. Rich in antioxidants and fatty acids to strengthen the skin barrier and improve elasticity.",
+            ingredients: ["Rosehip Oil", "Jojoba Oil", "Sea Buckthorn", "Vitamin E", "Turmeric Extract"],
+            imageColor: "#FFD54F"
+        },
+        {
+            id: 3,
+            name: "Green Tea Cleansing Balm",
+            category: "Cleanser",
+            price: 36,
+            description: "A gentle yet effective cleansing balm that melts away makeup and impurities while nourishing the skin. Leaves skin clean, soft, and balanced without stripping natural oils.",
+            ingredients: ["Green Tea Extract", "Shea Butter", "Chamomile", "Sunflower Oil", "Vitamin E"],
+            imageColor: "#2E7D32"
+        },
+        {
+            id: 4,
+            name: "Vitamin C Brightening Cream",
+            category: "Moisturizer",
+            price: 52,
+            description: "This potent Vitamin C cream brightens skin tone, reduces dark spots, and boosts collagen production. Lightweight texture suitable for day and night use.",
+            ingredients: ["Vitamin C", "Hyaluronic Acid", "Licorice Root", "Niacinamide", "Squalane"],
+            imageColor: "#FFB74D"
+        },
+        {
+            id: 5,
+            name: "Overnight Repair Mask",
+            category: "Mask",
+            price: 45,
+            description: "An intensive overnight treatment that works while you sleep to repair, hydrate, and rejuvenate skin. Wake up to softer, smoother, and more radiant skin.",
+            ingredients: ["Retinol", "Ceramides", "Peptides", "Hyaluronic Acid", "Chamomile"],
+            imageColor: "#81C784"
+        },
+        {
+            id: 6,
+            name: "Gentle Exfoliating Toner",
+            category: "Toner",
+            price: 32,
+            description: "A gentle exfoliating toner with natural AHAs to remove dead skin cells, unclog pores, and refine skin texture. Alcohol-free formula suitable for sensitive skin.",
+            ingredients: ["Lactic Acid", "Willow Bark", "Aloe Vera", "Green Tea", "Witch Hazel"],
+            imageColor: "#66BB6A"
+        },
+        {
+            id: 7,
+            name: "Soothing Eye Gel",
+            category: "Eye Care",
+            price: 38,
+            description: "A cooling gel formula that reduces puffiness, dark circles, and fine lines around the delicate eye area. Instantly refreshes and revitalizes tired eyes.",
+            ingredients: ["Caffeine", "Peptides", "Hyaluronic Acid", "Cucumber Extract", "Vitamin K"],
+            imageColor: "#AED581"
+        },
+        {
+            id: 8,
+            name: "Clay Detox Mask",
+            category: "Mask",
+            price: 28,
+            description: "A purifying clay mask that draws out impurities, absorbs excess oil, and minimizes pores. Leaves skin feeling deeply cleansed and refreshed.",
+            ingredients: ["Bentonite Clay", "Charcoal", "Tea Tree Oil", "Kaolin Clay", "Aloe Vera"],
+            imageColor: "#388E3C"
+        },
+        {
+            id: 9,
+            name: "Protective Day Cream SPF 30",
+            category: "Moisturizer",
+            price: 48,
+            description: "A daily moisturizer with SPF 30 protection and antioxidants to shield skin from environmental damage while providing lightweight hydration.",
+            ingredients: ["Zinc Oxide", "Vitamin E", "Green Tea", "Hyaluronic Acid", "Niacinamide"],
+            imageColor: "#C8E6C9"
+        },
+        {
+            id: 10,
+            name: "Lip Repair Balm",
+            category: "Lip Care",
+            price: 22,
+            description: "An ultra-nourishing lip balm that repairs dry, chapped lips with a blend of butters and oils. Provides long-lasting hydration and a subtle natural shine.",
+            ingredients: ["Shea Butter", "Beeswax", "Jojoba Oil", "Vitamin E", "Peppermint Oil"],
+            imageColor: "#FFECB3"
+        }
+    ];
+
+    // Global State
+    let cart = [];
+    let currentModalProduct = null;
+    let hero3D = null;
+    let about3D = null;
+    let modal3D = null;
+
+    // Initialize the page
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize 3D scenes
+        initHero3D();
+        initAbout3D();
+        
+        // Render products
+        renderProducts();
+        
+        // Setup event listeners
+        setupEventListeners();
+        
+        // Initialize search and filter functionality
+        initSearchAndFilter();
+        
+        // Setup mobile menu
+        setupMobileMenu();
+        
+        // Setup contact form
+        setupContactForm();
+    });
+
+    // 3D Initialization Functions
+    function initHero3D() {
+        const container = document.getElementById('hero-3d-container');
+        if (!container) return;
+        
+        // Simple 3D scene for hero section
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(30, container.clientWidth / container.clientHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        container.appendChild(renderer.domElement);
+        
+        // Lighting
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+        scene.add(ambientLight);
+        
+        const directionalLight = new THREE.DirectionalLight(0x4CAF50, 0.8);
+        directionalLight.position.set(5, 5, 5);
+        scene.add(directionalLight);
+        
+        // Create a 3D product model (simplified bottle)
+        const group = new THREE.Group();
+        
+        // Bottle body
+        const bottleGeometry = new THREE.CylinderGeometry(0.8, 0.6, 2, 32);
+        const bottleMaterial = new THREE.MeshPhysicalMaterial({
+            color: 0x4CAF50,
+            metalness: 0.3,
+            roughness: 0.2,
+            transmission: 0.7,
+            transparent: true,
+            opacity: 0.8
+        });
+        const bottle = new THREE.Mesh(bottleGeometry, bottleMaterial);
+        group.add(bottle);
+        
+        // Bottle cap
+        const capGeometry = new THREE.CylinderGeometry(0.5, 0.8, 0.5, 32);
+        const capMaterial = new THREE.MeshStandardMaterial({
+            color: 0xFFD54F,
+            metalness: 0.9,
+            roughness: 0.1
+        });
+        const cap = new THREE.Mesh(capGeometry, capMaterial);
+        cap.position.y = 1.3;
+        group.add(cap);
+        
+        // Dropper
+        const dropperGeometry = new THREE.CylinderGeometry(0.1, 0.1, 0.6, 16);
+        const dropperMaterial = new THREE.MeshStandardMaterial({
+            color: 0x2E7D32,
+            metalness: 0.7,
+            roughness: 0.3
+        });
+        const dropper = new THREE.Mesh(dropperGeometry, dropperMaterial);
+        dropper.position.y = 1.8;
+        group.add(dropper);
+        
+        scene.add(group);
+        camera.position.z = 5;
+        
+        // Animation
+        function animate() {
+            requestAnimationFrame(animate);
+            group.rotation.y += 0.005;
+            renderer.render(scene, camera);
+        }
+        
+        animate();
+        
+        // Handle resize
+        window.addEventListener('resize', function() {
+            camera.aspect = container.clientWidth / container.clientHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(container.clientWidth, container.clientHeight);
+        });
+        
+        hero3D = { scene, camera, renderer, group };
+    }
+
+    function initAbout3D() {
+        const container = document.getElementById('about-3d-container');
+        if (!container) return;
+        
+        // Simple 3D scene for about section
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(25, container.clientWidth / container.clientHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        container.appendChild(renderer.domElement);
+        
+        // Lighting
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+        scene.add(ambientLight);
+        
+        const directionalLight = new THREE.DirectionalLight(0x4CAF50, 0.8);
+        directionalLight.position.set(3, 3, 3);
+        scene.add(directionalLight);
+        
+        // Create multiple product models
+        const group = new THREE.Group();
+        
+        // Create 3 different product types
+        for (let i = 0; i < 3; i++) {
+            const productGroup = new THREE.Group();
+            
+            // Different shapes for variety
+            let geometry;
+            if (i === 0) {
+                geometry = new THREE.CylinderGeometry(0.4, 0.3, 1, 32);
+            } else if (i === 1) {
+                geometry = new THREE.SphereGeometry(0.5, 32, 32);
+                geometry.scale(1, 1.5, 1);
+            } else {
+                geometry = new THREE.BoxGeometry(0.7, 1, 0.7);
+                geometry.scale(1, 1.3, 1);
+            }
+            
+            const material = new THREE.MeshPhysicalMaterial({
+                color: i === 0 ? 0x4CAF50 : i === 1 ? 0xFFD54F : 0x2E7D32,
+                metalness: 0.2,
+                roughness: 0.3,
+                transmission: i === 0 ? 0.6 : 0,
+                transparent: true,
+                opacity: i === 0 ? 0.8 : 1
+            });
+            
+            const product = new THREE.Mesh(geometry, material);
+            product.position.x = (i - 1) * 1.5;
+            productGroup.add(product);
+            
+            // Add cap for cylinder
+            if (i === 0) {
+                const capGeometry = new THREE.CylinderGeometry(0.45, 0.4, 0.2, 32);
+                const capMaterial = new THREE.MeshStandardMaterial({
+                    color: 0xFFD54F,
+                    metalness: 0.8,
+                    roughness: 0.2
+                });
+                const cap = new THREE.Mesh(capGeometry, capMaterial);
+                cap.position.y = 0.6;
+                productGroup.add(cap);
+            }
+            
+            group.add(productGroup);
+        }
+        
+        scene.add(group);
+        camera.position.z = 8;
+        camera.position.y = 1;
+        
+        // Animation
+        function animate() {
+            requestAnimationFrame(animate);
+            group.rotation.y += 0.002;
+            renderer.render(scene, camera);
+        }
+        
+        animate();
+        
+        // Handle resize
+        window.addEventListener('resize', function() {
+            camera.aspect = container.clientWidth / container.clientHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(container.clientWidth, container.clientHeight);
+        });
+        
+        about3D = { scene, camera, renderer, group };
+    }
+
+    function initModal3D(productColor) {
+        const container = document.getElementById('modal-3d-container');
+        if (!container) return;
+        
+        // Clear previous 3D
+        while (container.firstChild) {
+            container.removeChild(container.firstChild);
+        }
+        
+        // Simple 3D scene for modal
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(25, container.clientWidth / container.clientHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        container.appendChild(renderer.domElement);
+        
+        // Lighting
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+        scene.add(ambientLight);
+        
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+        directionalLight.position.set(5, 5, 5);
+        scene.add(directionalLight);
+        
+        // Create product model
+        const group = new THREE.Group();
+        
+        // Bottle
+        const hexColor = productColor || 0x4CAF50;
+        const bottleGeometry = new THREE.CylinderGeometry(0.8, 0.6, 2, 32);
+        const bottleMaterial = new THREE.MeshPhysicalMaterial({
+            color: hexColor,
+            metalness: 0.3,
+            roughness: 0.2,
+            transmission: 0.7,
+            transparent: true,
+            opacity: 0.8
+        });
+        const bottle = new THREE.Mesh(bottleGeometry, bottleMaterial);
+        group.add(bottle);
+        
+        // Cap
+        const capGeometry = new THREE.CylinderGeometry(0.5, 0.8, 0.5, 32);
+        const capMaterial = new THREE.MeshStandardMaterial({
+            color: 0xFFD54F,
+            metalness: 0.9,
+            roughness: 0.1
+        });
+        const cap = new THREE.Mesh(capGeometry, capMaterial);
+        cap.position.y = 1.3;
+        group.add(cap);
+        
+        // Label
+        const labelGeometry = new THREE.CylinderGeometry(0.61, 0.61, 0.5, 32);
+        const labelMaterial = new THREE.MeshStandardMaterial({
+            color: 0x2E7D32,
+            metalness: 0.2,
+            roughness: 0.5
+        });
+        const label = new THREE.Mesh(labelGeometry, labelMaterial);
+        label.position.y = 0.2;
+        group.add(label);
+        
+        scene.add(group);
+        camera.position.z = 5;
+        
+        // Orbit controls for interactive rotation
+        const controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.05;
+        controls.enableZoom = false;
+        controls.enablePan = false;
+        
+        // Animation
+        function animate() {
+            requestAnimationFrame(animate);
+            controls.update();
+            renderer.render(scene, camera);
+        }
+        
+        animate();
+        
+        // Handle resize
+        const resizeHandler = function() {
+            camera.aspect = container.clientWidth / container.clientHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(container.clientWidth, container.clientHeight);
+        };
+        
+        window.addEventListener('resize', resizeHandler);
+        
+        // Store for cleanup
+        modal3D = { scene, camera, renderer, group, controls, resizeHandler };
+    }
+
+    function cleanupModal3D() {
+        if (modal3D) {
+            window.removeEventListener('resize', modal3D.resizeHandler);
+            if (modal3D.controls) {
+                modal3D.controls.dispose();
+            }
+            modal3D = null;
+        }
+    }
+
+    // Product Rendering Functions
+    function renderProducts(filteredProducts = products) {
+        const productGrid = document.getElementById('product-grid');
+        if (!productGrid) return;
+        
+        productGrid.innerHTML = '';
+        
+        filteredProducts.forEach(product => {
+            const productCard = document.createElement('div');
+            productCard.className = 'product-card';
+            productCard.dataset.id = product.id;
+            productCard.dataset.price = product.price;
+            productCard.dataset.name = product.name.toLowerCase();
+            productCard.dataset.category = product.category.toLowerCase();
+            
+            // Create color gradient based on product color
+            const color1 = product.imageColor || '#4CAF50';
+            const color2 = lightenColor(color1, 30);
+            
+            productCard.innerHTML = `
+                <div class="product-image" style="background: linear-gradient(135deg, ${color1}, ${color2})">
+                    <div class="product-badge">${product.category}</div>
+                    <div class="product-3d-placeholder"></div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">${product.name}</h3>
+                    <div class="product-category">${product.category}</div>
+                    <div class="product-price">$${product.price.toFixed(2)}</div>
+                    <p class="product-description">${product.description}</p>
+                </div>
+                <div class="product-payment">
+                    <div class="payment-title">Payment Methods:</div>
+                    <div class="payment-methods">
+                        <div class="payment-method">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span>Bkash: 016 ** ** ** **</span>
+                        </div>
+                        <div class="payment-method">
+                            <i class="fas fa-wallet"></i>
+                            <span>Nagad: 017 ** ** ** **</span>
+                        </div>
+                    </div>
+                    <button class="view-details-btn" data-id="${product.id}">
+                        <i class="fas fa-eye"></i>
+                        <span>View Details</span>
+                    </button>
+                </div>
+            `;
+            
+            productGrid.appendChild(productCard);
+        });
+        
+        // Add click event to view details buttons
+        document.querySelectorAll('.view-details-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const productId = parseInt(this.dataset.id);
+                openProductModal(productId);
+            });
+        });
+        
+        // Add click event to product cards
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const productId = parseInt(this.dataset.id);
+                openProductModal(productId);
+            });
+        });
+    }
+
+    // Modal Functions
+    function openProductModal(productId) {
+        const product = products.find(p => p.id === productId);
+        if (!product) return;
+        
+        currentModalProduct = product;
+        const modal = document.getElementById('product-modal');
+        const modalProductImage = document.getElementById('modal-product-image');
+        
+        // Update modal content
+        document.getElementById('modal-product-name').textContent = product.name;
+        document.getElementById('modal-category').textContent = product.category;
+        document.getElementById('modal-price').textContent = `$${product.price.toFixed(2)}`;
+        document.getElementById('modal-description').textContent = product.description;
+        
+        // Update ingredients
+        const ingredientsList = document.getElementById('modal-ingredients');
+        ingredientsList.innerHTML = '';
+        product.ingredients.forEach(ingredient => {
+            const li = document.createElement('li');
+            li.textContent = ingredient;
+            ingredientsList.appendChild(li);
+        });
+        
+        // Initialize 3D viewer for modal
+        initModal3D(product.imageColor);
+        
+        // Show modal
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeProductModal() {
+        const modal = document.getElementById('product-modal');
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+        cleanupModal3D();
+        currentModalProduct = null;
+    }
+
+    // Search and Filter Functions
+    function initSearchAndFilter() {
+        const searchInput = document.getElementById('product-search');
+        const sortSelect = document.getElementById('sort-products');
+        const priceSlider = document.getElementById('price-slider');
+        const priceValue = document.getElementById('price-value');
+        
+        if (!searchInput || !sortSelect || !priceSlider) return;
+        
+        // Search functionality
+        searchInput.addEventListener('input', function() {
+            filterAndSortProducts();
+        });
+        
+        // Sort functionality
+        sortSelect.addEventListener('change', function() {
+            filterAndSortProducts();
+        });
+        
+        // Price slider functionality
+        priceSlider.addEventListener('input', function() {
+            const maxPrice = parseInt(this.value);
+            priceValue.textContent = `Up to $${maxPrice}`;
+            filterAndSortProducts();
+        });
+        
+        // Nav search functionality
+        const navSearchInput = document.querySelector('.search-input');
+        if (navSearchInput) {
+            navSearchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                const filtered = products.filter(product => 
+                    product.name.toLowerCase().includes(searchTerm) ||
+                    product.description.toLowerCase().includes(searchTerm) ||
+                    product.category.toLowerCase().includes(searchTerm) ||
+                    product.ingredients.some(ing => ing.toLowerCase().includes(searchTerm))
+                );
+                renderProducts(filtered);
+            });
+        }
+    }
+
+    function filterAndSortProducts() {
+        const searchTerm = document.getElementById('product-search').value.toLowerCase();
+        const sortValue = document.getElementById('sort-products').value;
+        const maxPrice = parseInt(document.getElementById('price-slider').value);
+        
+        // Filter by search and price
+        let filtered = products.filter(product => {
+            const matchesSearch = 
+                product.name.toLowerCase().includes(searchTerm) ||
+                product.description.toLowerCase().includes(searchTerm) ||
+                product.category.toLowerCase().includes(searchTerm) ||
+                product.ingredients.some(ing => ing.toLowerCase().includes(searchTerm));
+            
+            const matchesPrice = product.price <= maxPrice;
+            
+            return matchesSearch && matchesPrice;
+        });
+        
+        // Sort products
+        switch(sortValue) {
+            case 'price-low':
+                filtered.sort((a, b) => a.price - b.price);
+                break;
+            case 'price-high':
+                filtered.sort((a, b) => b.price - a.price);
+                break;
+            case 'name':
+                filtered.sort((a, b) => a.name.localeCompare(b.name));
+                break;
+            case 'newest':
+                // Assuming newer products have higher IDs
+                filtered.sort((a, b) => b.id - a.id);
+                break;
+        }
+        
+        renderProducts(filtered);
+    }
+
+    // Cart Functions
+    function addToCart(productId) {
+        const product = products.find(p => p.id === productId);
+        if (!product) return;
+        
+        cart.push(product);
+        updateCartCount();
+        
+        // Show confirmation
+        showNotification(`${product.name} added to cart!`);
+    }
+
+    function updateCartCount() {
+        const cartCount = document.querySelector('.cart-count');
+        if (cartCount) {
+            cartCount.textContent = cart.length;
+        }
+    }
+
+    // Utility Functions
+    function lightenColor(color, percent) {
+        const num = parseInt(color.replace("#", ""), 16);
+        const amt = Math.round(2.55 * percent);
+        const R = (num >> 16) + amt;
+        const G = (num >> 8 & 0x00FF) + amt;
+        const B = (num & 0x0000FF) + amt;
+        
+        return "#" + (
+            0x1000000 + 
+            (R < 255 ? R < 1 ? 0 : R : 255) * 0x10000 + 
+            (G < 255 ? G < 1 ? 0 : G : 255) * 0x100 + 
+            (B < 255 ? B < 1 ? 0 : B : 255)
+        ).toString(16).slice(1);
+    }
+
+    function showNotification(message) {
+        // Create notification element
+        const notification = document.createElement('div');
+        notification.className = 'notification';
+        notification.textContent = message;
+        notification.style.cssText = `
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-dark));
+            color: white;
+            padding: 15px 25px;
+            border-radius: var(--radius);
+            z-index: 3000;
+            box-shadow: var(--shadow-hover);
+            transform: translateX(150%);
+            transition: transform 0.3s ease;
+        `;
+        
+        document.body.appendChild(notification);
+        
+        // Animate in
+        setTimeout(() => {
+            notification.style.transform = 'translateX(0)';
+        }, 10);
+        
+        // Animate out and remove
+        setTimeout(() => {
+            notification.style.transform = 'translateX(150%)';
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.parentNode.removeChild(notification);
+                }
+            }, 300);
+        }, 3000);
+    }
+
+    // Event Listeners Setup
+    function setupEventListeners() {
+        // Close modal on button click
+        document.querySelector('.close-modal').addEventListener('click', closeProductModal);
+        
+        // Close modal on overlay click
+        document.getElementById('product-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeProductModal();
+            }
+        });
+        
+        // Add to cart button in modal
+        document.querySelector('.add-to-cart-btn').addEventListener('click', function() {
+            if (currentModalProduct) {
+                addToCart(currentModalProduct.id);
+                closeProductModal();
+            }
+        });
+        
+        // Cart icon click
+        document.querySelector('.cart-icon').addEventListener('click', function() {
+            if (cart.length === 0) {
+                showNotification('Your cart is empty. Add some products first!');
+            } else {
+                showNotification(`You have ${cart.length} item(s) in your cart.`);
+            }
+        });
+        
+        // Hero button click
+        document.querySelector('.hero-btn').addEventListener('click', function() {
+            document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+        });
+        
+        // Nav link clicks
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    // Update active nav link
+                    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Scroll to section
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.querySelector('.mobile-menu');
+                    if (mobileMenu.style.display === 'flex') {
+                        mobileMenu.style.display = 'none';
+                    }
+                }
+            });
+        });
+        
+        // Scroll spy for nav links
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    }
+
+    // Mobile Menu Setup
+    function setupMobileMenu() {
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        
+        if (!mobileMenuBtn || !mobileMenu) return;
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            if (mobileMenu.style.display === 'flex') {
+                mobileMenu.style.display = 'none';
+            } else {
+                mobileMenu.style.display = 'flex';
+            }
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenu.style.display = 'none';
+                
+                // Update active state
+                document.querySelectorAll('.mobile-nav-link').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Also update desktop nav
+                const targetId = this.getAttribute('href');
+                document.querySelectorAll('.nav-link').forEach(navLink => {
+                    navLink.classList.remove('active');
+                    if (navLink.getAttribute('href') === targetId) {
+                        navLink.classList.add('active');
+                    }
+                });
+            });
+        });
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target) && mobileMenu.style.display === 'flex') {
+                mobileMenu.style.display = 'none';
+            }
+        });
+    }
+
+    // Contact Form Setup
+    function setupContactForm() {
+        const contactForm = document.getElementById('contact-form');
+        if (!contactForm) return;
+        
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = this.querySelector('input[type="text"]').value;
+            const email = this.querySelector('input[type="email"]').value;
+            const message = this.querySelector('textarea').value;
+            
+            // Simple validation
+            if (!name || !email || !message) {
+                showNotification('Please fill in all fields.');
+                return;
+            }
+            
+            // In a real application, you would send this data to a server
+            // For now, just show a success message
+            showNotification(`Thank you, ${name}! Your message has been sent. We'll get back to you soon.`);
+            
+            // Reset form
+            this.reset();
+        });
+    }
+</script>
+</body>
+</html>
